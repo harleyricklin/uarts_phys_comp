@@ -14,7 +14,15 @@ void setup(){
 }
 
 void loop(){
-  // step three : switch to analogWrite to control the LED
+  // step four : set the brightness of the LED using the photo sensor
+
+  // read in the light level
+  int lightLevel = analogRead(lightPin);
+
+  // map the lightlevel to 0<=lightlevel<=255
+  lightLevel = map(lightLevel, 0, 900, 0, 255);
+  Serial.print("lightLevel mapped value: ");
+  Serial.println(lightLevel);   
 
   // turn the ledPin on
   analogWrite(ledPin, 255);
