@@ -24,8 +24,8 @@ void loop(){
   Serial.print("lightLevel mapped value: ");
   Serial.println(lightLevel);   
 
-  // turn the ledPin on
-  analogWrite(ledPin, 255);
+  // turn the ledPin on, write the light level to the LED
+  analogWrite(ledPin, lightLevel);
 
   // read the value from the sensor: 0 - 1023
   potValue = analogRead(potPin);
