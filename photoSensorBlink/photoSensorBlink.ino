@@ -30,11 +30,19 @@ void loop() {
 
   // read the value from the sensor: 0 - 1023
   potValue = analogRead(potPin);
+
+  //  WAIT : leave the LED on at this level for this amount of milliseconds
   delay(potValue);
   
   // only blink if the potentiometer is set below 1000
-  if (sensorValue < 1000) {
+  if (potValue < 1000) {
+
+    // turn off the LED, write the 0 to the LED
     analogWrite(ledPin, 0);
-    delay(sensorValue);
+
+    // WAIT : leave the LED off for this amount of milliseconds
+    delay(potValue);
+
   }
+
 }
