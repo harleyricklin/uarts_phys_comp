@@ -14,10 +14,10 @@ void setup(){
 }
 
 void loop(){
-  // step two : keep the LED on when pot is all the way turned
+  // step three : switch to analogWrite to control the LED
 
   // turn the ledPin on
-  digitalWrite(ledPin, HIGH);
+  analogWrite(ledPin, 255);
 
   // read the value from the sensor: 0 - 1023
   potValue = analogRead(potPin);
@@ -29,7 +29,7 @@ void loop(){
   if (potValue < 1000){
 
     // turn the ledPin off:
-    digitalWrite(ledPin, LOW);
+    analogWrite(ledPin, 0);
 
     // WAIT : leave the LED off for this amount of milliseconds
     delay(potValue);
