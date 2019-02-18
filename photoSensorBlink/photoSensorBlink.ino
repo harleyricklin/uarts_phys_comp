@@ -5,7 +5,8 @@ int lastLevel = 0;
 int potPin = A1;
 int potValue = 0;
 
-void setup() {
+void setup()
+{
   // set the led pin to output
   pinMode(ledPin, OUTPUT);
   // turn on the serial monitor
@@ -13,36 +14,22 @@ void setup() {
   Serial.println("Serial enabled");
 }
 
-void loop() {
-  // read in the light level
-  int lightLevel = analogRead(lightPin);
+void loop()
+{
+  // step one : after building the physical circuit, make the LED blink using the potentiometer
 
-  // map the lightlevel to 0<=lightlevel<=255
-  lightLevel = map(lightLevel, 0, 900, 0, 255);
-  if (lightLevel != lastLevel) {
-    lastLevel = lightLevel; 
-    Serial.print("lightLevel mapped value: ");
-    Serial.println(lightLevel);   
-  }
-
-  // turn on the LED, write the light level to the LED
-  analogWrite(ledPin, lightLevel); 
+  // turn the ledPin on
+  digitalWrite(ledPin, HIGH);
 
   // read the value from the sensor: 0 - 1023
   potValue = analogRead(potPin);
 
   //  WAIT : leave the LED on at this level for this amount of milliseconds
   delay(potValue);
-  
-  // only blink if the potentiometer is set below 1000
-  if (potValue < 1000) {
 
-    // turn off the LED, write the 0 to the LED
-    analogWrite(ledPin, 0);
+  // turn the ledPin off:
+  digitalWrite(ledPin, LOW);
 
-    // WAIT : leave the LED off for this amount of milliseconds
-    delay(potValue);
-
-  }
-
+  // WAIT : leave the LED off for this amount of milliseconds
+  delay(potValue);
 }
