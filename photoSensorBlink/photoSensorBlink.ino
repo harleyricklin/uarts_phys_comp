@@ -16,19 +16,21 @@ void setup(){
 void loop(){
   // step three : switch to analogWrite to control the LED
 
-  // turn the ledPin on
+  //// turn the ledPin on
   analogWrite(ledPin, 255);
 
   // read the value from the sensor: 0 - 1023
   potValue = analogRead(potPin);
-
+  Serial.print("pot value: ");
+  Serial.println(potValue);
+  
   //  WAIT : leave the LED on at this level for this amount of milliseconds
   delay(potValue);
 
   // only blink if the potentiometer is set below 1000
   if (potValue < 1000){
 
-    // turn the ledPin off:
+    //// turn the ledPin off:
     analogWrite(ledPin, 0);
 
     // WAIT : leave the LED off for this amount of milliseconds
