@@ -1,6 +1,7 @@
 /* Photo Light Sensor */
 int lightPin = A0;
 int ledPin = 13;
+int mappedLevel = 0;
 int lastLevel = 0;
 int potPin = A1;
 int potValue = 0;
@@ -16,16 +17,16 @@ void setup(){
 void loop(){
   // step four : set the brightness of the LED using the photo sensor
 
-  // read in the light level
+  //// read in the light level
   int lightLevel = analogRead(lightPin);
 
-  // map the lightlevel to 0<=lightlevel<=255
-  lightLevel = map(lightLevel, 0, 900, 0, 255);
+  //// map the lightlevel to 0<=lightlevel<=255
+  mappedLevel = map(lightLevel, 0, 900, 0, 255);
   Serial.print("lightLevel mapped value: ");
-  Serial.println(lightLevel);   
+  Serial.println(mappedLevel);   
 
-  // turn the ledPin on, write the light level to the LED
-  analogWrite(ledPin, lightLevel);
+  //// turn the ledPin on, write the light level to the LED
+  analogWrite(ledPin, mappedLevel);
 
   // read the value from the sensor: 0 - 1023
   potValue = analogRead(potPin);
