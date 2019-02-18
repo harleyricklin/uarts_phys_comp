@@ -5,8 +5,7 @@ int lastLevel = 0;
 int potPin = A1;
 int potValue = 0;
 
-void setup()
-{
+void setup(){
   // set the led pin to output
   pinMode(ledPin, OUTPUT);
   // turn on the serial monitor
@@ -14,9 +13,8 @@ void setup()
   Serial.println("Serial enabled");
 }
 
-void loop()
-{
-  // step one : after building the physical circuit, make the LED blink using the potentiometer
+void loop(){
+  // step two : keep the LED on when pot is all the way turned
 
   // turn the ledPin on
   digitalWrite(ledPin, HIGH);
@@ -27,9 +25,13 @@ void loop()
   //  WAIT : leave the LED on at this level for this amount of milliseconds
   delay(potValue);
 
-  // turn the ledPin off:
-  digitalWrite(ledPin, LOW);
+  // only blink if the potentiometer is set below 1000
+  if (potValue < 1000){
 
-  // WAIT : leave the LED off for this amount of milliseconds
-  delay(potValue);
+    // turn the ledPin off:
+    digitalWrite(ledPin, LOW);
+
+    // WAIT : leave the LED off for this amount of milliseconds
+    delay(potValue);
+  }
 }
